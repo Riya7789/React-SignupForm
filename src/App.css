@@ -20,12 +20,9 @@
     font-weight: 400;
     }
 
-    .App
-    {
-      display: flex;
-    }
     .main-block {
     display: flex;
+    align-items: center;
     width: 90%;
     padding: 10px 0; 
     border-radius: 5px;
