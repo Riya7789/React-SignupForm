@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css'; 
 
 const SocialSignupForm = () => {
@@ -9,7 +9,7 @@ const SocialSignupForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    alert(`Name: ${name}\nPassword: ${password}`);
+    alert(`${selectedButton}\nName: ${name}\nPassword: ${password}`);
   };
 
   return (
@@ -22,7 +22,7 @@ const SocialSignupForm = () => {
          </small>
         </p>
       </div>
-      <div className="block-item right">
+      {/* <div className="block-item right">
         <button
           className="btn facebook"
           onClick={() => {
@@ -53,9 +53,9 @@ const SocialSignupForm = () => {
           <i className="fab fa-google"></i>
           <span>Google</span>
         </button>
-      </div>
+      </div> */}
 
-      {showForm && (
+      {showForm ? (
         <div className="form-container">
           <form onSubmit={handleFormSubmit}>
             <h2>Signup with {selectedButton}</h2>
@@ -65,6 +65,7 @@ const SocialSignupForm = () => {
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
             <div>
@@ -73,12 +74,44 @@ const SocialSignupForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <button type="submit">Submit</button>
           </form>
         </div>
-      )}
+      ): (<div className="block-item right">
+      <button
+        className="btn facebook"
+        onClick={() => {
+          setSelectedButton('Facebook');
+          setShowForm(true);
+        }}
+      >
+        <i className="fab fa-facebook-f"></i>
+        <span>Facebook</span>
+      </button>
+      <button
+        className="btn twitter"
+        onClick={() => {
+          setSelectedButton('Twitter');
+          setShowForm(true);
+        }}
+      >
+        <i className="fab fa-twitter"></i>
+        <span>Twitter</span>
+      </button>
+      <button
+        className="btn google"
+        onClick={() => {
+          setSelectedButton('Google');
+          setShowForm(true);
+        }}
+      >
+        <i className="fab fa-google"></i>
+        <span>Google</span>
+      </button>
+    </div>)}
     </div>
   );
 };
